@@ -5,9 +5,9 @@ export {
 };
 
 export const COMPANY_INFO = {
-  legalName: 'Veterans Health Community Health Support LLC',
-  displayName: 'Veterans Health Community Health Support LLC',
-  shortName: 'VETERANS HEALTH CARRIER',
+  legalName: 'Veterans Community Health Support LLC',
+  displayName: 'Veterans Community Health Support LLC',
+  shortName: 'VETERANS COMMUNITY HEALTH',
   tagline: 'Freight Transportation | Carrier Services | Reliable Transportation',
   mcNumber: 'MC 1760354',
   rawMc: '1760354',

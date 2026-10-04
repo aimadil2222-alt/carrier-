@@ -11,14 +11,14 @@ export const Hero: React.FC<HeroProps> = ({ onOpenRateModal, onNavigateToSection
   return (
     <section 
       id="home"
-      aria-label="Veterans Health Freight Transportation Hero"
+      aria-label="Veterans Community Health Support Freight Transportation Hero"
       className="relative w-full overflow-hidden bg-slate-950 select-none min-h-[460px] sm:min-h-[500px] md:min-h-[540px] flex items-center"
     >
       {/* BACKGROUND IMAGE - CRISP U.S. FREIGHT TRUCK VISIBLE ON PHONES & DESKTOPS */}
       <div className="absolute inset-0 z-0">
         <img
           src={heroFreightTruck}
-          alt="Veterans Health commercial freight truck hauling on highway"
+          alt="Veterans Community Health Support commercial freight truck hauling on highway"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover object-center brightness-100 contrast-100"
         />

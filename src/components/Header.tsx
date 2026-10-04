@@ -199,7 +199,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateM
             <div className="flex items-start justify-between pb-3 border-b border-white/15">
               <div>
                 <div className="bg-[#FFD13B] text-[#0D4F5C] px-2.5 py-1 text-xs font-black uppercase tracking-wider inline-block">
-                  VETERANS HEALTH
+                  VETERANS COMMUNITY HEALTH
                 </div>
                 <div className="text-[10px] text-slate-200 font-bold mt-1.5 space-y-0.5">
                   <div>{COMPANY_INFO.mcNumber} · USDOT {COMPANY_INFO.dotNumber}</div>
