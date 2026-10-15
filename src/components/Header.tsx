@@ -8,20 +8,41 @@ import {
   MapPin, 
   ShieldCheck,
   Truck,
-  ArrowRight
+  ArrowRight,
+  FileText,
+  Shield
 } from 'lucide-react';
 
 interface HeaderProps {
   onNavigateToSection: (sectionId: string) => void;
   onOpenRateModal: (equipmentType?: string) => void;
+  onNavigateToPage: (pagePath: string) => void;
+  currentPage: string;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateModal }) => {
+export const Header: React.FC<HeaderProps> = ({ 
+  onNavigateToSection, 
+  onOpenRateModal,
+  onNavigateToPage,
+  currentPage 
+}) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleNavClick = (sectionId: string) => {
     setMobileMenuOpen(false);
-    onNavigateToSection(sectionId);
+    if (currentPage !== 'home') {
+      onNavigateToPage('/');
+      setTimeout(() => {
+        onNavigateToSection(sectionId);
+      }, 50);
+    } else {
+      onNavigateToSection(sectionId);
+    }
+  };
+
+  const handlePageClick = (pagePath: string) => {
+    setMobileMenuOpen(false);
+    onNavigateToPage(pagePath);
   };
 
   return (
@@ -30,8 +51,8 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateM
       <div className="w-full bg-[#FFD13B] py-2 sm:py-2.5 px-4 border-b border-[#e5ba2b]">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-1 text-center md:text-left">
           <a 
-            href="#home" 
-            onClick={(e) => { e.preventDefault(); handleNavClick('home'); }}
+            href="/" 
+            onClick={(e) => { e.preventDefault(); handlePageClick('/'); }}
             className="font-logo text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide text-[#0D4F5C] uppercase select-none hover:opacity-95 transition-opacity"
           >
             {COMPANY_INFO.legalName}
@@ -100,7 +121,11 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateM
               <Menu className="w-5 h-5 stroke-[2.5]" />
             </button>
 
-            <div className="hidden lg:flex items-center gap-2">
+            <a
+              href="/"
+              onClick={(e) => { e.preventDefault(); handlePageClick('/'); }}
+              className="hidden lg:flex items-center gap-2 cursor-pointer hover:opacity-90"
+            >
               <div className="w-8 h-8 rounded-sm bg-[#0D4F5C] text-[#FFD13B] flex items-center justify-center font-black text-sm">
                 <Truck className="w-4 h-4" />
               </div>
@@ -112,14 +137,16 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateM
                   Cleveland, OH · Active Authority
                 </span>
               </div>
-            </div>
+            </a>
           </div>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden lg:flex items-center gap-5 text-xs font-bold text-slate-700 uppercase tracking-wide">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-5 text-xs font-bold text-slate-700 uppercase tracking-wide">
             <button
-              onClick={() => handleNavClick('home')}
-              className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
+              onClick={() => handlePageClick('/')}
+              className={`hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer ${
+                currentPage === 'home' ? 'text-[#0D4F5C] border-b-2 border-[#FFD13B]' : ''
+              }`}
             >
               Home
             </button>
@@ -164,6 +191,27 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateM
               className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
             >
               Contact
+            </button>
+
+            {/* Separator */}
+            <span className="text-slate-300">|</span>
+
+            {/* SEPARATED PAGES IN MENU BAR */}
+            <button
+              onClick={() => handlePageClick('/privacy-policy')}
+              className={`hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer ${
+                currentPage === 'privacy-policy' ? 'text-[#0D4F5C] border-b-2 border-[#FFD13B] font-black' : 'text-slate-600'
+              }`}
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={() => handlePageClick('/sms-terms')}
+              className={`hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer ${
+                currentPage === 'sms-terms' ? 'text-[#0D4F5C] border-b-2 border-[#FFD13B] font-black' : 'text-slate-600'
+              }`}
+            >
+              SMS Terms
             </button>
           </nav>
 
@@ -218,7 +266,7 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateM
             {/* Nav Links */}
             <div className="py-3 flex flex-col gap-1 text-sm font-semibold">
               <button
-                onClick={() => handleNavClick('home')}
+                onClick={() => handlePageClick('/')}
                 className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
               >
                 <span>Home</span>
@@ -273,6 +321,33 @@ export const Header: React.FC<HeaderProps> = ({ onNavigateToSection, onOpenRateM
                 <span>Contact Information</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
               </button>
+
+              {/* SEPARATED PAGES IN MOBILE MENU */}
+              <div className="pt-2 mt-2 border-t border-white/15">
+                <div className="text-[10px] uppercase font-bold text-[#FFD13B] px-2 mb-1">
+                  Legal & Compliance Pages
+                </div>
+                <button
+                  onClick={() => handlePageClick('/privacy-policy')}
+                  className="w-full flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+                >
+                  <span className="flex items-center gap-2">
+                    <Shield className="w-3.5 h-3.5 text-[#FFD13B]" />
+                    <span>Privacy Policy</span>
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+                </button>
+                <button
+                  onClick={() => handlePageClick('/sms-terms')}
+                  className="w-full flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+                >
+                  <span className="flex items-center gap-2">
+                    <FileText className="w-3.5 h-3.5 text-[#FFD13B]" />
+                    <span>SMS Terms & Conditions</span>
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+                </button>
+              </div>
             </div>
 
             {/* Direct Contact Footer */}

@@ -1,16 +1,29 @@
 import React from 'react';
 import { COMPANY_INFO } from '../data/companyData';
-import { Phone, Mail, MapPin, ShieldCheck, Truck } from 'lucide-react';
+import { Phone, Mail, MapPin, Shield, FileText } from 'lucide-react';
 
 interface FooterProps {
   onNavigateToSection: (sectionId: string) => void;
   onOpenRateModal: () => void;
+  onNavigateToPage: (pagePath: string) => void;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigateToSection, onOpenRateModal }) => {
+export const Footer: React.FC<FooterProps> = ({ 
+  onNavigateToSection, 
+  onOpenRateModal,
+  onNavigateToPage 
+}) => {
   const handleLinkClick = (e: React.MouseEvent, sectionId: string) => {
     e.preventDefault();
-    onNavigateToSection(sectionId);
+    onNavigateToPage('/');
+    setTimeout(() => {
+      onNavigateToSection(sectionId);
+    }, 50);
+  };
+
+  const handlePageClick = (e: React.MouseEvent, pagePath: string) => {
+    e.preventDefault();
+    onNavigateToPage(pagePath);
   };
 
   return (
@@ -81,17 +94,40 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToSection, onOpenRateM
             </ul>
           </div>
 
-          {/* Col 3: Equipment Overview */}
+          {/* Col 3: Legal & Messaging Policies (A2P 10DLC & RingCentral Requirement) */}
           <div>
             <h5 className="text-xs font-black uppercase text-[#FFD13B] tracking-wider mb-3">
-              Our Equipment
+              Policies & Compliance
             </h5>
-            <ul className="space-y-2 text-slate-200 text-xs">
-              <li>Box Trucks</li>
-              <li>Hotshot</li>
-              <li>Dry Vans</li>
-              <li>Other Available Equipment</li>
+            <ul className="space-y-2.5 text-slate-200 text-xs">
+              <li>
+                <a 
+                  href="/privacy-policy" 
+                  onClick={(e) => handlePageClick(e, '/privacy-policy')}
+                  className="inline-flex items-center gap-1.5 hover:text-[#FFD13B] font-semibold transition-colors"
+                >
+                  <Shield className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
+                  <span>Privacy Policy</span>
+                </a>
+                <span className="block text-[10px] text-slate-400 pl-5 font-mono">
+                  /privacy-policy
+                </span>
+              </li>
+              <li className="pt-1">
+                <a 
+                  href="/sms-terms" 
+                  onClick={(e) => handlePageClick(e, '/sms-terms')}
+                  className="inline-flex items-center gap-1.5 hover:text-[#FFD13B] font-semibold transition-colors"
+                >
+                  <FileText className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
+                  <span>SMS Terms & Conditions</span>
+                </a>
+                <span className="block text-[10px] text-slate-400 pl-5 font-mono">
+                  /sms-terms
+                </span>
+              </li>
             </ul>
+
             <div className="mt-4 pt-3 border-t border-white/10">
               <button
                 onClick={onOpenRateModal}
@@ -127,11 +163,31 @@ export const Footer: React.FC<FooterProps> = ({ onNavigateToSection, onOpenRateM
 
         </div>
 
-        {/* Bottom Copyright */}
-        <div className="pt-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-300 text-center sm:text-left">
+        {/* Bottom Copyright & Policy Links */}
+        <div className="pt-5 flex flex-col md:flex-row items-center justify-between gap-3 text-[11px] text-slate-300 text-center md:text-left">
           <div>
             &copy; 2026 <span className="font-bold text-white">{COMPANY_INFO.legalName}</span>. All rights reserved.
           </div>
+          
+          {/* Explicit Quick Footer Legal Links */}
+          <div className="flex items-center gap-4 text-xs">
+            <a 
+              href="/privacy-policy" 
+              onClick={(e) => handlePageClick(e, '/privacy-policy')}
+              className="text-slate-300 hover:text-[#FFD13B] underline underline-offset-2 transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <span className="text-white/20">|</span>
+            <a 
+              href="/sms-terms" 
+              onClick={(e) => handlePageClick(e, '/sms-terms')}
+              className="text-slate-300 hover:text-[#FFD13B] underline underline-offset-2 transition-colors"
+            >
+              SMS Terms & Conditions
+            </a>
+          </div>
+
           <div className="text-slate-400">
             {COMPANY_INFO.mcNumber} · USDOT {COMPANY_INFO.dotNumber} · Operating Authority: Active
           </div>
