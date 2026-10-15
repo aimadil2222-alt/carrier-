@@ -101,6 +101,13 @@ export const Header: React.FC<HeaderProps> = ({
               >
                 {COMPANY_INFO.email}
               </a>
+              <span className="text-white/40">/</span>
+              <a 
+                href={`mailto:${COMPANY_INFO.secondaryEmail}`} 
+                className="hover:text-[#FFD13B] text-slate-300 transition-colors"
+              >
+                {COMPANY_INFO.secondaryEmail}
+              </a>
             </div>
           </div>
 
@@ -356,9 +363,14 @@ export const Header: React.FC<HeaderProps> = ({
                 <Phone className="w-3.5 h-3.5 text-[#FFD13B]" />
                 <a href={`tel:${COMPANY_INFO.rawPhone}`}>{COMPANY_INFO.phone}</a>
               </div>
-              <div className="flex items-center gap-2 text-slate-200">
-                <Mail className="w-3.5 h-3.5 text-[#FFD13B]" />
-                <a href={`mailto:${COMPANY_INFO.email}`} className="truncate">{COMPANY_INFO.email}</a>
+              <div className="flex flex-col gap-1 text-slate-200">
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
+                  <a href={`mailto:${COMPANY_INFO.email}`} className="truncate hover:text-[#FFD13B]">{COMPANY_INFO.email}</a>
+                </div>
+                <div className="flex items-center gap-2 pl-5.5">
+                  <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="truncate text-slate-300 hover:text-[#FFD13B]">{COMPANY_INFO.secondaryEmail}</a>
+                </div>
               </div>
               <div className="flex items-start gap-2 text-[11px] text-slate-300">
                 <MapPin className="w-3.5 h-3.5 text-[#FFD13B] shrink-0 mt-0.5" />

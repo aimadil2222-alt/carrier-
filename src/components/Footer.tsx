@@ -149,11 +149,16 @@ export const Footer: React.FC<FooterProps> = ({
                 {COMPANY_INFO.phone}
               </a>
             </div>
-            <div className="flex items-center gap-2 text-slate-200">
-              <Mail className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
-              <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-[#FFD13B] truncate">
-                {COMPANY_INFO.email}
-              </a>
+            <div className="flex items-start gap-2 text-slate-200">
+              <Mail className="w-3.5 h-3.5 text-[#FFD13B] shrink-0 mt-0.5" />
+              <div className="flex flex-col space-y-0.5">
+                <a href={`mailto:${COMPANY_INFO.email}`} className="hover:text-[#FFD13B] truncate">
+                  {COMPANY_INFO.email}
+                </a>
+                <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="hover:text-[#FFD13B] text-slate-300 truncate">
+                  {COMPANY_INFO.secondaryEmail}
+                </a>
+              </div>
             </div>
             <div className="flex items-start gap-2 text-slate-300 text-[11px] pt-1">
               <MapPin className="w-3.5 h-3.5 text-[#FFD13B] shrink-0 mt-0.5" />

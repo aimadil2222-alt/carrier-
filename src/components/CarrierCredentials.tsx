@@ -115,6 +115,12 @@ export const CarrierCredentials: React.FC<CarrierCredentialsProps> = ({ onOpenRa
               <span>Physical: {COMPANY_INFO.physicalAddress.full}</span>
               <span className="text-slate-400 mx-2">|</span>
               <span>Mailing: {COMPANY_INFO.mailingAddress.full}</span>
+              <div className="mt-1 text-[11px] text-slate-500">
+                <span className="font-semibold text-slate-700">Dispatch:</span>{' '}
+                <a href={`mailto:${COMPANY_INFO.email}`} className="text-[#0D4F5C] hover:underline font-medium">{COMPANY_INFO.email}</a>
+                <span className="mx-1.5 text-slate-300">/</span>
+                <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="text-[#0D4F5C] hover:underline font-medium">{COMPANY_INFO.secondaryEmail}</a>
+              </div>
             </div>
           </div>
 
