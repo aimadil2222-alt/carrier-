@@ -107,28 +107,34 @@ export const CarrierCredentials: React.FC<CarrierCredentialsProps> = ({ onOpenRa
         </div>
 
         {/* Address & Quick Broker Packet Notice */}
-        <div className="mt-5 p-4 sm:p-5 bg-white rounded-lg border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-start gap-3 text-xs text-slate-700">
+        <div className="mt-5 p-4 sm:p-5 bg-white rounded-lg border border-slate-200 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 w-full min-w-0 overflow-hidden">
+          <div className="flex items-start gap-3 text-xs text-slate-700 w-full md:w-auto min-w-0">
             <MapPin className="w-4 h-4 text-[#0D4F5C] shrink-0 mt-0.5" />
-            <div>
-              <span className="font-bold text-slate-900 block text-xs">Official Carrier Address:</span>
-              <span>Physical: {COMPANY_INFO.physicalAddress.full}</span>
-              <span className="text-slate-400 mx-2">|</span>
-              <span>Mailing: {COMPANY_INFO.mailingAddress.full}</span>
-              <div className="mt-1 text-[11px] text-slate-500">
-                <span className="font-semibold text-slate-700">Dispatch:</span>{' '}
-                <a href={`mailto:${COMPANY_INFO.email}`} className="text-[#0D4F5C] hover:underline font-bold">{COMPANY_INFO.email}</a>
-                <span className="mx-1.5 text-slate-300">/</span>
-                <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="text-[#0D4F5C] hover:underline font-medium">{COMPANY_INFO.secondaryEmail}</a>
-                <span className="mx-1.5 text-slate-300">/</span>
-                <a href={`mailto:${COMPANY_INFO.tertiaryEmail}`} className="text-[#0D4F5C] hover:underline font-medium">{COMPANY_INFO.tertiaryEmail}</a>
+            <div className="min-w-0 flex-1">
+              <span className="font-bold text-slate-900 block text-xs mb-1">Official Carrier Address:</span>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 text-slate-700 font-medium text-xs">
+                <span className="break-words">
+                  <strong className="text-slate-900 font-semibold">Physical:</strong> {COMPANY_INFO.physicalAddress.full}
+                </span>
+                <span className="text-slate-300 hidden sm:inline">|</span>
+                <span className="break-words">
+                  <strong className="text-slate-900 font-semibold">Mailing:</strong> {COMPANY_INFO.mailingAddress.full}
+                </span>
+              </div>
+              <div className="mt-2 pt-2 border-t border-slate-100 flex flex-wrap items-center gap-1 text-[11px] text-slate-600">
+                <span className="font-bold text-slate-800">Dispatch:</span>
+                <a href={`mailto:${COMPANY_INFO.email}`} className="text-[#0D4F5C] hover:underline font-bold break-all">{COMPANY_INFO.email}</a>
+                <span className="text-slate-300 mx-1">/</span>
+                <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="text-[#0D4F5C] hover:underline font-medium break-all">{COMPANY_INFO.secondaryEmail}</a>
+                <span className="text-slate-300 mx-1">/</span>
+                <a href={`mailto:${COMPANY_INFO.tertiaryEmail}`} className="text-[#0D4F5C] hover:underline font-medium break-all">{COMPANY_INFO.tertiaryEmail}</a>
               </div>
             </div>
           </div>
 
           <button
             onClick={onOpenRateModal}
-            className="bg-[#0D4F5C] hover:bg-[#155D69] text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-none whitespace-nowrap shadow-xs transition-colors cursor-pointer"
+            className="w-full sm:w-auto bg-[#0D4F5C] hover:bg-[#155D69] text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-none text-center shadow-xs transition-colors cursor-pointer shrink-0"
           >
             Request Rate / Carrier Packet
           </button>

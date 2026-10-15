@@ -34,11 +34,11 @@ export const AboutUs: React.FC = () => {
 
           {/* Written Information Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-3">
-            <div className="p-4 bg-slate-50 rounded border border-slate-200 text-xs">
+            <div className="p-4 bg-slate-50 rounded border border-slate-200 text-xs min-w-0">
               <span className="font-bold text-[#0D4F5C] uppercase text-[10px] block mb-1">
                 Headquarters
               </span>
-              <span className="text-slate-700 font-medium">{COMPANY_INFO.physicalAddress.full}</span>
+              <span className="text-slate-700 font-medium break-words block">{COMPANY_INFO.physicalAddress.full}</span>
             </div>
 
             <div className="p-4 bg-slate-50 rounded border border-slate-200 text-xs">

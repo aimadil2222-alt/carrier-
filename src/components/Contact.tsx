@@ -57,16 +57,16 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
           
           {/* LEFT: Official Company Details Card */}
-          <div className="lg:col-span-5 bg-[#0D4F5C] text-white p-6 sm:p-7 rounded-lg shadow-md border-l-6 border-[#FFD13B] space-y-5">
+          <div className="lg:col-span-5 bg-[#0D4F5C] text-white p-4 sm:p-7 rounded-lg shadow-md border-l-6 border-[#FFD13B] space-y-4 sm:space-y-5 w-full min-w-0 overflow-hidden">
             
-            <div>
+            <div className="min-w-0">
               <span className="text-[10px] font-black uppercase tracking-wider text-[#FFD13B] block mb-1">
                 U.S. Motor Carrier Details
               </span>
-              <h3 className="text-xl sm:text-2xl font-black uppercase font-logo text-white leading-tight">
+              <h3 className="text-lg sm:text-2xl font-black uppercase font-logo text-white leading-tight break-words">
                 {COMPANY_INFO.legalName}
               </h3>
-              <div className="flex flex-wrap items-center gap-2 mt-2">
+              <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mt-2">
                 <span className="bg-[#FFD13B] text-[#0D4F5C] font-mono text-xs font-bold px-2 py-0.5 rounded-xs">
                   {COMPANY_INFO.mcNumber}
                 </span>
@@ -79,15 +79,15 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
               </div>
             </div>
 
-            <div className="space-y-3 pt-2 text-xs">
+            <div className="space-y-3 pt-2 text-xs min-w-0">
               {/* Clickable Phone Number on Mobile & Desktop */}
-              <div className="flex items-start gap-3 p-3 rounded bg-white/10">
+              <div className="flex items-start gap-3 p-3 rounded bg-white/10 min-w-0">
                 <Phone className="w-4 h-4 text-[#FFD13B] shrink-0 mt-0.5" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <span className="text-[10px] uppercase font-bold text-slate-300 block">Phone (Click to Call)</span>
                   <a 
                     href={`tel:${COMPANY_INFO.rawPhone}`} 
-                    className="text-base font-black text-white hover:text-[#FFD13B] transition-colors tracking-wide"
+                    className="text-base font-black text-white hover:text-[#FFD13B] transition-colors tracking-wide break-all"
                   >
                     {COMPANY_INFO.phone}
                   </a>
@@ -95,11 +95,11 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
               </div>
 
               {/* Emails */}
-              <div className="flex items-start gap-3 p-3 rounded bg-white/10">
+              <div className="flex items-start gap-3 p-3 rounded bg-white/10 min-w-0">
                 <Mail className="w-4 h-4 text-[#FFD13B] shrink-0 mt-0.5" />
-                <div className="space-y-1">
+                <div className="space-y-1 min-w-0 flex-1">
                   <span className="text-[10px] uppercase font-bold text-slate-300 block">Dispatch & Operations Emails</span>
-                  <div>
+                  <div className="min-w-0">
                     <a 
                       href={`mailto:${COMPANY_INFO.email}`} 
                       className="text-xs font-bold text-white hover:text-[#FFD13B] transition-colors block break-all"
@@ -107,7 +107,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
                       {COMPANY_INFO.email}
                     </a>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <a 
                       href={`mailto:${COMPANY_INFO.secondaryEmail}`} 
                       className="text-xs text-slate-200 hover:text-[#FFD13B] transition-colors block break-all"
@@ -115,7 +115,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
                       {COMPANY_INFO.secondaryEmail}
                     </a>
                   </div>
-                  <div>
+                  <div className="min-w-0">
                     <a 
                       href={`mailto:${COMPANY_INFO.tertiaryEmail}`} 
                       className="text-xs text-slate-200 hover:text-[#FFD13B] transition-colors block break-all"
@@ -127,28 +127,28 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
               </div>
 
               {/* Physical Address */}
-              <div className="flex items-start gap-3 p-3 rounded bg-white/10">
+              <div className="flex items-start gap-3 p-3 rounded bg-white/10 min-w-0">
                 <MapPin className="w-4 h-4 text-[#FFD13B] shrink-0 mt-0.5" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <span className="text-[10px] uppercase font-bold text-slate-300 block">Physical Address</span>
-                  <span className="text-xs font-semibold text-white block">
+                  <span className="text-xs font-semibold text-white block break-words">
                     {COMPANY_INFO.physicalAddress.street}
                   </span>
-                  <span className="text-xs text-slate-200 block">
+                  <span className="text-xs text-slate-200 block break-words">
                     {COMPANY_INFO.physicalAddress.cityStateZip}
                   </span>
                 </div>
               </div>
 
               {/* Mailing Address */}
-              <div className="flex items-start gap-3 p-3 rounded bg-white/10">
+              <div className="flex items-start gap-3 p-3 rounded bg-white/10 min-w-0">
                 <MapPin className="w-4 h-4 text-[#FFD13B] shrink-0 mt-0.5" />
-                <div>
+                <div className="min-w-0 flex-1">
                   <span className="text-[10px] uppercase font-bold text-slate-300 block">Mailing Address</span>
-                  <span className="text-xs font-semibold text-white block">
+                  <span className="text-xs font-semibold text-white block break-words">
                     {COMPANY_INFO.mailingAddress.street}
                   </span>
-                  <span className="text-xs text-slate-200 block">
+                  <span className="text-xs text-slate-200 block break-words">
                     {COMPANY_INFO.mailingAddress.cityStateZip}
                   </span>
                 </div>

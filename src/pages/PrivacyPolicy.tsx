@@ -220,13 +220,13 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigateHome, on
               For questions about this Privacy Policy or our handling of personal information, please contact us using the business email address or telephone number published on our official website.
             </p>
             
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs space-y-2">
-              <div className="font-bold text-slate-900 text-sm">
+            <div className="p-4 bg-slate-50 border border-slate-200 rounded-lg text-xs space-y-2 min-w-0 overflow-hidden">
+              <div className="font-bold text-slate-900 text-sm break-words">
                 {COMPANY_INFO.legalName}
               </div>
-              <div className="text-slate-600 flex items-center gap-2">
-                <MapPin className="w-3.5 h-3.5 text-[#0D4F5C] shrink-0" />
-                <span>{COMPANY_INFO.physicalAddress.full}</span>
+              <div className="text-slate-600 flex items-start gap-2 min-w-0">
+                <MapPin className="w-3.5 h-3.5 text-[#0D4F5C] shrink-0 mt-0.5" />
+                <span className="break-words">{COMPANY_INFO.physicalAddress.full}</span>
               </div>
               <div className="text-slate-600 flex items-center gap-2">
                 <Phone className="w-3.5 h-3.5 text-[#0D4F5C] shrink-0" />
