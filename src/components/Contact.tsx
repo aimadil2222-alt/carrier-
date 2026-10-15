@@ -98,7 +98,7 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
               <div className="flex items-start gap-3 p-3 rounded bg-white/10">
                 <Mail className="w-4 h-4 text-[#FFD13B] shrink-0 mt-0.5" />
                 <div className="space-y-1">
-                  <span className="text-[10px] uppercase font-bold text-slate-300 block">Dispatch Emails</span>
+                  <span className="text-[10px] uppercase font-bold text-slate-300 block">Dispatch & Operations Emails</span>
                   <div>
                     <a 
                       href={`mailto:${COMPANY_INFO.email}`} 
@@ -113,6 +113,14 @@ export const Contact: React.FC<ContactProps> = ({ onOpenRateModal, preselectedEq
                       className="text-xs text-slate-200 hover:text-[#FFD13B] transition-colors block break-all"
                     >
                       {COMPANY_INFO.secondaryEmail}
+                    </a>
+                  </div>
+                  <div>
+                    <a 
+                      href={`mailto:${COMPANY_INFO.tertiaryEmail}`} 
+                      className="text-xs text-slate-200 hover:text-[#FFD13B] transition-colors block break-all"
+                    >
+                      {COMPANY_INFO.tertiaryEmail}
                     </a>
                   </div>
                 </div>

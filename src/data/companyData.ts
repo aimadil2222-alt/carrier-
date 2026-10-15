@@ -15,17 +15,18 @@ export const COMPANY_INFO = {
   operatingAuthority: 'Active',
   phone: '(951) 413-4908',
   rawPhone: '+19514134908',
-  email: 'slogan.idpa@gmail.com',
-  secondaryEmail: 'leo.baker772@gmail.com',
+  email: 'Leo.baker@vchsllc.com',
+  secondaryEmail: 'slogan.idpa@gmail.com',
+  tertiaryEmail: 'leo.baker772@gmail.com',
   physicalAddress: {
-    street: '1021 Ansel Rd',
+    street: '1031 Ansel Rd',
     cityStateZip: 'Cleveland, OH 44103',
-    full: '1021 Ansel Rd, Cleveland, OH 44103',
+    full: '1031 Ansel Rd, Cleveland, OH 44103',
   },
   mailingAddress: {
-    street: '1021 Ansel Rd',
+    street: '1031 Ansel Rd',
     cityStateZip: 'Cleveland, OH 44103-2253',
-    full: '1021 Ansel Rd, Cleveland, OH 44103-2253',
+    full: '1031 Ansel Rd, Cleveland, OH 44103-2253',
   },
 };
 

@@ -201,20 +201,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigateHome, on
           {/* Section 9 */}
           <section className="space-y-3">
             <h2 className="text-base sm:text-lg font-black text-[#0D4F5C] uppercase tracking-wide">
-              9. Children&apos;s Privacy
-            </h2>
-            <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              Our business SMS communications are intended for business contacts and are not directed toward children.
-            </p>
-            <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              We do not knowingly collect personal information from children through an SMS program intended for business communications.
-            </p>
-          </section>
-
-          {/* Section 10 */}
-          <section className="space-y-3">
-            <h2 className="text-base sm:text-lg font-black text-[#0D4F5C] uppercase tracking-wide">
-              10. Changes to This Privacy Policy
+              9. Changes to This Privacy Policy
             </h2>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
               We may update this Privacy Policy periodically to reflect changes in our business practices or applicable requirements.
@@ -224,10 +211,10 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigateHome, on
             </p>
           </section>
 
-          {/* Section 11 */}
+          {/* Section 10 */}
           <section className="space-y-4 pt-4 border-t border-slate-200">
             <h2 className="text-base sm:text-lg font-black text-[#0D4F5C] uppercase tracking-wide">
-              11. Contact Us
+              10. Contact Us
             </h2>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
               For questions about this Privacy Policy or our handling of personal information, please contact us using the business email address or telephone number published on our official website.
@@ -247,7 +234,7 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigateHome, on
                   {COMPANY_INFO.phone}
                 </a>
               </div>
-              <div className="text-slate-600 flex items-center gap-2">
+              <div className="text-slate-600 flex flex-wrap items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#0D4F5C] shrink-0" />
                 <a href={`mailto:${COMPANY_INFO.email}`} className="font-bold text-slate-800 hover:text-[#0D4F5C]">
                   {COMPANY_INFO.email}
@@ -255,6 +242,10 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigateHome, on
                 <span>/</span>
                 <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="text-slate-700 hover:text-[#0D4F5C]">
                   {COMPANY_INFO.secondaryEmail}
+                </a>
+                <span>/</span>
+                <a href={`mailto:${COMPANY_INFO.tertiaryEmail}`} className="text-slate-700 hover:text-[#0D4F5C]">
+                  {COMPANY_INFO.tertiaryEmail}
                 </a>
               </div>
               <div className="text-slate-600 pt-1">

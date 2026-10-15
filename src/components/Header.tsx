@@ -93,11 +93,11 @@ export const Header: React.FC<HeaderProps> = ({
               </a>
             </div>
             <span className="text-white/30 hidden sm:inline">|</span>
-            <div className="flex items-center gap-1.5 text-slate-200">
+            <div className="flex flex-wrap items-center justify-center gap-1.5 text-slate-200">
               <Mail className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
               <a 
                 href={`mailto:${COMPANY_INFO.email}`} 
-                className="hover:text-[#FFD13B] transition-colors"
+                className="hover:text-[#FFD13B] font-bold text-white transition-colors"
               >
                 {COMPANY_INFO.email}
               </a>
@@ -107,6 +107,13 @@ export const Header: React.FC<HeaderProps> = ({
                 className="hover:text-[#FFD13B] text-slate-300 transition-colors"
               >
                 {COMPANY_INFO.secondaryEmail}
+              </a>
+              <span className="text-white/40">/</span>
+              <a 
+                href={`mailto:${COMPANY_INFO.tertiaryEmail}`} 
+                className="hover:text-[#FFD13B] text-slate-300 transition-colors"
+              >
+                {COMPANY_INFO.tertiaryEmail}
               </a>
             </div>
           </div>
@@ -366,10 +373,13 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="flex flex-col gap-1 text-slate-200">
                 <div className="flex items-center gap-2">
                   <Mail className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
-                  <a href={`mailto:${COMPANY_INFO.email}`} className="truncate hover:text-[#FFD13B]">{COMPANY_INFO.email}</a>
+                  <a href={`mailto:${COMPANY_INFO.email}`} className="truncate font-bold text-white hover:text-[#FFD13B]">{COMPANY_INFO.email}</a>
                 </div>
                 <div className="flex items-center gap-2 pl-5.5">
                   <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="truncate text-slate-300 hover:text-[#FFD13B]">{COMPANY_INFO.secondaryEmail}</a>
+                </div>
+                <div className="flex items-center gap-2 pl-5.5">
+                  <a href={`mailto:${COMPANY_INFO.tertiaryEmail}`} className="truncate text-slate-300 hover:text-[#FFD13B]">{COMPANY_INFO.tertiaryEmail}</a>
                 </div>
               </div>
               <div className="flex items-start gap-2 text-[11px] text-slate-300">

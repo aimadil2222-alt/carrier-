@@ -243,7 +243,7 @@ export const SmsTerms: React.FC<SmsTermsProps> = ({ onNavigateHome, onNavigateTo
                   {COMPANY_INFO.phone}
                 </a>
               </div>
-              <div className="text-slate-600 flex items-center gap-2">
+              <div className="text-slate-600 flex flex-wrap items-center gap-2">
                 <Mail className="w-3.5 h-3.5 text-[#0D4F5C] shrink-0" />
                 <a href={`mailto:${COMPANY_INFO.email}`} className="font-bold text-slate-800 hover:text-[#0D4F5C]">
                   {COMPANY_INFO.email}
@@ -251,6 +251,10 @@ export const SmsTerms: React.FC<SmsTermsProps> = ({ onNavigateHome, onNavigateTo
                 <span>/</span>
                 <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="text-slate-700 hover:text-[#0D4F5C]">
                   {COMPANY_INFO.secondaryEmail}
+                </a>
+                <span>/</span>
+                <a href={`mailto:${COMPANY_INFO.tertiaryEmail}`} className="text-slate-700 hover:text-[#0D4F5C]">
+                  {COMPANY_INFO.tertiaryEmail}
                 </a>
               </div>
               <div className="text-slate-600 pt-1">
