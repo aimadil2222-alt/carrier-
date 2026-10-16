@@ -61,21 +61,21 @@ export const SmsTerms: React.FC<SmsTermsProps> = ({ onNavigateHome, onNavigateTo
               1. Program Description
             </h2>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              {COMPANY_INFO.legalName} provides non-promotional SMS communications relating to transportation and logistics business activities.
+              {COMPANY_INFO.legalName} provides non-promotional SMS text messaging for legitimate transportation and logistics business communications.
             </p>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
               Messages may include:
             </p>
             <ul className="list-disc pl-5 space-y-1.5 text-xs sm:text-sm text-slate-700">
-              <li>Available freight and load offers.</li>
-              <li>Responses to load inquiries.</li>
+              <li>Load availability and load-related inquiries, where applicable.</li>
               <li>Load acceptance and coordination.</li>
+              <li>Dispatch communications.</li>
               <li>Pickup and delivery updates.</li>
               <li>Appointment confirmations.</li>
-              <li>Other relevant transportation and logistics communications.</li>
+              <li>Shipment-related customer service communications.</li>
             </ul>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700 font-semibold">
-              Messages are intended for drivers, carriers, and business contacts who have provided the required consent to receive such communications.
+              Messages are intended solely for drivers, carriers, shippers, brokers, and business contacts who have provided the required consent to receive such communications.
             </p>
           </section>
 
@@ -85,17 +85,14 @@ export const SmsTerms: React.FC<SmsTermsProps> = ({ onNavigateHome, onNavigateTo
               2. Consent to Receive Messages
             </h2>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              By opting in to our SMS program, you agree to receive non-promotional business-related text messages from our company concerning transportation and logistics activities.
+              Consent to receive SMS messages from {COMPANY_INFO.legalName} may be provided through our website inquiry forms via an explicit, un-checked opt-in checkbox, through written carrier onboarding and dispatch agreements, or through direct business correspondence.
+            </p>
+            <p className="text-xs sm:text-sm leading-relaxed text-slate-700 font-semibold">
+              Providing a telephone number or sending an initial text does not automatically authorize ongoing shipment notifications, recurring dispatch updates, or load offers. Consent is specifically obtained and recorded prior to sending recurring or non-transient SMS communications.
             </p>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              Consent to receive SMS messages is not a condition of purchasing any goods or services.
+              Consent to receive SMS messages is completely voluntary and is not a condition of purchasing any goods, booking freight, or receiving transportation services.
             </p>
-            <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              We will obtain and maintain the required consent before sending messages.
-            </p>
-            <div className="p-3 bg-amber-50 border-l-4 border-amber-400 text-amber-900 text-xs rounded-r">
-              <span className="font-bold">Important:</span> We must implement an actual consent process before using this section to represent our operational practices. Publishing these terms alone does not establish that a recipient has opted in.
-            </div>
           </section>
 
           {/* Section 3 */}
@@ -171,26 +168,30 @@ export const SmsTerms: React.FC<SmsTermsProps> = ({ onNavigateHome, onNavigateTo
           </section>
 
           {/* Section 7 - RingCentral / A2P 10DLC Critical */}
-          <section className="space-y-3 p-4 bg-slate-50 border border-slate-200 rounded-md">
+          <section className="space-y-3 p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-md">
             <h2 className="text-base sm:text-lg font-black text-[#0D4F5C] uppercase tracking-wide">
               7. Privacy
             </h2>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              We respect your privacy and handle personal information in accordance with our Privacy Policy.
+              We respect your privacy and handle personal information in strict accordance with our Privacy Policy.
             </p>
             <p className="text-xs sm:text-sm leading-relaxed font-bold text-slate-900">
-              Mobile phone numbers and SMS consent information will not be sold or shared with third parties or affiliates for their own marketing or promotional purposes.
+              Mobile information and SMS opt-in consent will not be sold or shared with third parties or affiliates for their own marketing or promotional purposes. SMS opt-in data and consent records will not be shared with third parties or affiliates, except with service providers that assist us in delivering our messaging services or as otherwise permitted or required by law.
             </p>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              For more information, please review our Privacy Policy:
+              For complete information regarding our privacy practices and data protection, please review our Privacy Policy:
             </p>
             <div>
-              <button
-                onClick={onNavigateToPrivacy}
-                className="font-bold text-[#0D4F5C] hover:underline text-xs sm:text-sm cursor-pointer"
+              <a
+                href="/privacy-policy"
+                onClick={(e) => {
+                  e.preventDefault();
+                  onNavigateToPrivacy();
+                }}
+                className="font-bold text-[#0D4F5C] hover:underline text-xs sm:text-sm cursor-pointer inline-flex items-center gap-1"
               >
-                https://www.vchsllc.com/privacy-policy
-              </button>
+                <span>https://www.vchsllc.com/privacy-policy</span>
+              </a>
             </div>
           </section>
 

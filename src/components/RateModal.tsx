@@ -6,9 +6,15 @@ interface RateModalProps {
   isOpen: boolean;
   onClose: () => void;
   defaultEquipment?: string;
+  onNavigateToPage?: (path: string) => void;
 }
 
-export const RateModal: React.FC<RateModalProps> = ({ isOpen, onClose, defaultEquipment }) => {
+export const RateModal: React.FC<RateModalProps> = ({ 
+  isOpen, 
+  onClose, 
+  defaultEquipment,
+  onNavigateToPage 
+}) => {
   const [formData, setFormData] = useState({
     name: '',
     company: '',
@@ -18,10 +24,12 @@ export const RateModal: React.FC<RateModalProps> = ({ isOpen, onClose, defaultEq
     origin: '',
     destination: '',
     commodityNotes: '',
+    smsConsent: false, // Unchecked by default per RingCentral requirement
   });
 
   const [submitted, setSubmitted] = useState(false);
   const [refId, setRefId] = useState('');
+  const [consentTimestamp, setConsentTimestamp] = useState('');
 
   useEffect(() => {
     if (defaultEquipment) {
@@ -34,12 +42,46 @@ export const RateModal: React.FC<RateModalProps> = ({ isOpen, onClose, defaultEq
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const generatedRef = 'VET-' + Math.floor(100000 + Math.random() * 900000);
+    const nowIso = new Date().toISOString();
     setRefId(generatedRef);
+    setConsentTimestamp(nowIso);
+
+    // Record SMS consent audit trail
+    const consentRecord = {
+      referenceId: generatedRef,
+      phone: formData.phone,
+      name: formData.name,
+      company: formData.company,
+      timestamp: nowIso,
+      consentGranted: formData.smsConsent,
+      consentText: "I consent to receive non-promotional business and dispatch SMS text messages (such as load offers, pickup/delivery updates, and appointment confirmations) from Veterans Community Health Support LLC at the phone number provided above. Message frequency may vary. Message and data rates may apply. Reply STOP to cancel, HELP for help.",
+      consentVersion: "v1.2-A2P-2026",
+      source: "Rate Request Modal Window"
+    };
+    try {
+      const existing = JSON.parse(localStorage.getItem('vchs_sms_consent_records') || '[]');
+      existing.push(consentRecord);
+      localStorage.setItem('vchs_sms_consent_records', JSON.stringify(existing));
+    } catch {
+      // safe fallback
+    }
+
     setSubmitted(true);
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setFormData({
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      equipment: defaultEquipment || 'Dry Vans',
+      origin: '',
+      destination: '',
+      commodityNotes: '',
+      smsConsent: false,
+    });
     onClose();
   };
 
@@ -86,6 +128,40 @@ export const RateModal: React.FC<RateModalProps> = ({ isOpen, onClose, defaultEq
               <p className="text-xs sm:text-sm text-slate-600">
                 Reference ID: <span className="font-mono font-bold text-slate-900">{refId}</span>
               </p>
+              <div className="p-3 bg-slate-50 border border-slate-200 rounded text-left text-xs space-y-1.5 max-w-sm mx-auto">
+                <div className="flex items-center justify-between border-b border-slate-200 pb-1.5">
+                  <span className="font-bold text-slate-700">SMS Consent Status:</span>
+                  {formData.smsConsent ? (
+                    <span className="text-emerald-700 font-bold bg-emerald-100/70 px-2 py-0.5 rounded text-[11px] border border-emerald-300">
+                      Opted In (Voluntary)
+                    </span>
+                  ) : (
+                    <span className="text-slate-600 font-medium bg-slate-200/70 px-2 py-0.5 rounded text-[11px]">
+                      Not Opted In
+                    </span>
+                  )}
+                </div>
+                {formData.smsConsent ? (
+                  <div className="text-[11px] text-slate-600 space-y-1 pt-0.5">
+                    <p>
+                      Consent recorded for <span className="font-mono font-semibold text-slate-800">{formData.phone}</span>. You will receive non-promotional load coordination and dispatch text updates.
+                    </p>
+                    <p className="text-[10px] text-slate-500 font-mono">
+                      Audit Timestamp: {consentTimestamp || new Date().toISOString()} | Version: v1.2-A2P-2026
+                    </p>
+                    <p className="text-[10px] text-slate-500">
+                      Msg frequency varies. Msg &amp; data rates may apply. Reply STOP to cancel, HELP for help.
+                    </p>
+                  </div>
+                ) : (
+                  <div className="text-[11px] text-slate-600 pt-0.5">
+                    <p>
+                      No SMS consent provided. All load confirmations and rate quotes will be communicated strictly via email to <span className="font-semibold text-slate-800">{formData.email}</span>. No automated text messages will be sent.
+                    </p>
+                  </div>
+                )}
+              </div>
+
               <p className="text-xs text-slate-500 max-w-xs mx-auto">
                 Our dispatch coordinator will review equipment capacity and reply to <span className="font-semibold text-slate-700">{formData.email}</span> with lane pricing promptly.
               </p>
@@ -213,6 +289,67 @@ export const RateModal: React.FC<RateModalProps> = ({ isOpen, onClose, defaultEq
                   onChange={(e) => setFormData({ ...formData, commodityNotes: e.target.value })}
                   className="w-full px-3 py-2 text-xs border border-slate-300 rounded-none focus:outline-hidden focus:border-[#0D4F5C]"
                 />
+              </div>
+
+              {/* OPTIONAL SMS CONSENT CHECKBOX (RingCentral / A2P 10DLC Compliant) */}
+              <div className="p-3 bg-slate-50 border border-slate-300 rounded-xs space-y-2">
+                <div className="flex items-start gap-2.5">
+                  <input
+                    type="checkbox"
+                    id="modalSmsConsent"
+                    name="smsConsent"
+                    checked={formData.smsConsent}
+                    onChange={(e) => setFormData((prev) => ({ ...prev, smsConsent: e.target.checked }))}
+                    className="mt-0.5 w-4 h-4 text-[#0D4F5C] accent-[#0D4F5C] border-slate-300 rounded focus:ring-[#0D4F5C] cursor-pointer shrink-0"
+                  />
+                  <label htmlFor="modalSmsConsent" className="text-[11px] text-slate-800 leading-relaxed cursor-pointer select-none">
+                    <span className="font-bold text-slate-900 block mb-0.5">
+                      (Optional) SMS Dispatch &amp; Load Updates Consent:
+                    </span>
+                    I agree to receive non-promotional business and dispatch SMS text messages (including load offers, pickup/delivery updates, and appointment confirmations) from <strong>Veterans Community Health Support LLC</strong> at the phone number provided above.
+                  </label>
+                </div>
+                <div className="text-[10px] text-slate-500 pl-6.5 space-y-1 leading-normal border-t border-slate-200/60 pt-1.5">
+                  <p>
+                    &bull; Consent is voluntary and <strong>not</strong> a condition of booking freight, submitting inquiries, or purchasing services.
+                  </p>
+                  <p>
+                    &bull; Message frequency may vary depending on shipment activity. Message and data rates may apply.
+                  </p>
+                  <p>
+                    &bull; Reply <strong>STOP</strong> at any time to opt out. Reply <strong>HELP</strong> for assistance or contact dispatch.
+                  </p>
+                  <p className="pt-0.5">
+                    &bull; Mobile information will not be sold or shared with third parties for marketing purposes. View our{' '}
+                    <a
+                      href="/privacy-policy"
+                      onClick={(e) => {
+                        if (onNavigateToPage) {
+                          e.preventDefault();
+                          onClose();
+                          onNavigateToPage('/privacy-policy');
+                        }
+                      }}
+                      className="font-bold text-[#0D4F5C] underline hover:text-[#155D69]"
+                    >
+                      Privacy Policy
+                    </a>{' '}
+                    and{' '}
+                    <a
+                      href="/sms-terms"
+                      onClick={(e) => {
+                        if (onNavigateToPage) {
+                          e.preventDefault();
+                          onClose();
+                          onNavigateToPage('/sms-terms');
+                        }
+                      }}
+                      className="font-bold text-[#0D4F5C] underline hover:text-[#155D69]"
+                    >
+                      SMS Terms &amp; Conditions
+                    </a>.
+                  </p>
+                </div>
               </div>
 
               <button

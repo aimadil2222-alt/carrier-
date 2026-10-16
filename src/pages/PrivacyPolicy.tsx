@@ -66,9 +66,6 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigateHome, on
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
               This Privacy Policy explains how we collect, use, maintain, and protect personal information in connection with our transportation and logistics operations, including communications with drivers, carriers, and business contacts.
             </p>
-            <div className="p-3 bg-amber-50 border-l-4 border-amber-400 text-amber-900 text-xs rounded-r">
-              <span className="font-bold">Important:</span> The company name above must be confirmed against the official legal and tax records before publication.
-            </div>
           </section>
 
           {/* Section 2 */}
@@ -134,22 +131,22 @@ export const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onNavigateHome, on
             </p>
           </section>
 
-          {/* Section 5 - A2P 10DLC Critical */}
-          <section className="space-y-3 p-4 bg-slate-50 border border-slate-200 rounded-md">
+          {/* Section 5 - SMS Privacy and Consent */}
+          <section className="space-y-3 p-4 sm:p-5 bg-slate-50 border border-slate-200 rounded-md">
             <h2 className="text-base sm:text-lg font-black text-[#0D4F5C] uppercase tracking-wide">
               5. Sharing of Personal Information
             </h2>
-            <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
+            <div className="text-xs font-black uppercase tracking-wider text-[#0D4F5C] bg-[#FFD13B]/40 px-2.5 py-1 rounded-xs inline-block">
+              SMS Privacy and Consent
+            </div>
+            <p className="text-xs sm:text-sm leading-relaxed text-slate-800 font-bold">
               We do not sell personal information collected through our SMS program.
             </p>
-            <p className="text-xs sm:text-sm leading-relaxed font-bold text-slate-900">
-              We do not share mobile phone numbers or SMS opt-in consent information with third parties or affiliates for their own marketing or promotional purposes.
+            <p className="text-xs sm:text-sm leading-relaxed text-slate-800">
+              No mobile information or SMS opt-in consent will be shared with third parties or affiliates for their own marketing or promotional purposes. SMS opt-in data and consent records will not be shared with third parties or affiliates, except with service providers that assist us in delivering our messaging services or as otherwise permitted or required by law. Such service providers may use this information only to perform services on our behalf and may not use it for their own marketing purposes.
             </p>
             <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              We may share information with service providers when reasonably necessary to operate our business, provide communications services, coordinate transportation, protect our systems, or comply with legal obligations.
-            </p>
-            <p className="text-xs sm:text-sm leading-relaxed text-slate-700">
-              Any sharing of SMS consent information will be handled in accordance with applicable requirements.
+              We may share other business information with service providers when reasonably necessary to operate our business, coordinate transportation, provide communications services, protect our systems, or comply with legal obligations.
             </p>
           </section>
 

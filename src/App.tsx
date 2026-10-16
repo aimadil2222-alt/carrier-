@@ -159,6 +159,7 @@ export default function App() {
             <Contact 
               onOpenRateModal={handleOpenRateModal}
               preselectedEquipment={selectedEquipment}
+              onNavigateToPage={navigateToPage}
             />
           </>
         )}
@@ -176,6 +177,7 @@ export default function App() {
         isOpen={rateModalOpen}
         onClose={handleCloseRateModal}
         defaultEquipment={selectedEquipment}
+        onNavigateToPage={navigateToPage}
       />
     </div>
   );
