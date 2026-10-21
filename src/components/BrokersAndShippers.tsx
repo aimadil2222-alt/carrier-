@@ -8,7 +8,7 @@ interface BrokersAndShippersProps {
 
 export const BrokersAndShippers: React.FC<BrokersAndShippersProps> = ({ onOpenRateModal }) => {
   return (
-    <section id="brokers" className="w-full py-8 sm:py-12 bg-slate-900 text-white relative overflow-hidden scroll-mt-14 sm:scroll-mt-16">
+    <section id="brokers" className="w-full py-8 sm:py-12 bg-slate-900 text-white relative overflow-hidden">
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
         
         <div className="max-w-3xl mx-auto text-center">

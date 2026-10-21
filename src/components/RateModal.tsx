@@ -94,7 +94,7 @@ export const RateModal: React.FC<RateModalProps> = ({
       />
 
       {/* Modal Container */}
-      <div className="relative w-full max-w-lg bg-white rounded-lg shadow-2xl z-10 overflow-hidden modal-smooth-in max-h-[95vh] flex flex-col">
+      <div className="relative w-full max-w-lg bg-white rounded-lg shadow-2xl z-10 overflow-hidden animate-in fade-in zoom-in-95 duration-150 max-h-[95vh] flex flex-col">
         
         {/* Header */}
         <div className="bg-[#0D4F5C] text-white p-4 sm:p-5 flex items-center justify-between border-b-4 border-[#FFD13B]">

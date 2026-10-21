@@ -112,41 +112,35 @@ export default function App() {
         currentPage={currentRoute}
       />
 
-      {/* 2. Main Page View Routing with smooth page fade */}
+      {/* 2. Main Page View Routing */}
       <main className="flex-1">
         {currentRoute === 'privacy-policy' && (
-          <div key="privacy-policy" className="page-smooth-fade">
-            <PrivacyPolicy 
-              onNavigateHome={() => navigateToPage('/')}
-              onNavigateToSmsTerms={() => navigateToPage('/sms-terms')}
-              onNavigateToContact={() => navigateToPage('/contact')}
-            />
-          </div>
+          <PrivacyPolicy 
+            onNavigateHome={() => navigateToPage('/')}
+            onNavigateToSmsTerms={() => navigateToPage('/sms-terms')}
+            onNavigateToContact={() => navigateToPage('/contact')}
+          />
         )}
 
         {currentRoute === 'sms-terms' && (
-          <div key="sms-terms" className="page-smooth-fade">
-            <SmsTerms 
-              onNavigateHome={() => navigateToPage('/')}
-              onNavigateToPrivacy={() => navigateToPage('/privacy-policy')}
-              onNavigateToContact={() => navigateToPage('/contact')}
-            />
-          </div>
+          <SmsTerms 
+            onNavigateHome={() => navigateToPage('/')}
+            onNavigateToPrivacy={() => navigateToPage('/privacy-policy')}
+            onNavigateToContact={() => navigateToPage('/contact')}
+          />
         )}
 
         {currentRoute === 'contact' && (
-          <div key="contact" className="page-smooth-fade">
-            <ContactUs 
-              onNavigateHome={() => navigateToPage('/')}
-              onNavigateToPrivacy={() => navigateToPage('/privacy-policy')}
-              onNavigateToSmsTerms={() => navigateToPage('/sms-terms')}
-              onOpenRateModal={handleOpenRateModal}
-            />
-          </div>
+          <ContactUs 
+            onNavigateHome={() => navigateToPage('/')}
+            onNavigateToPrivacy={() => navigateToPage('/privacy-policy')}
+            onNavigateToSmsTerms={() => navigateToPage('/sms-terms')}
+            onOpenRateModal={handleOpenRateModal}
+          />
         )}
 
         {currentRoute === 'home' && (
-          <div key="home" className="page-smooth-fade">
+          <>
             {/* Homepage Hero Section */}
             <Hero 
               onOpenRateModal={() => handleOpenRateModal()}
@@ -186,7 +180,7 @@ export default function App() {
               preselectedEquipment={selectedEquipment}
               onNavigateToPage={navigateToPage}
             />
-          </div>
+          </>
         )}
       </main>
 

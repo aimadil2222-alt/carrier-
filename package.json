@@ -34,3 +34,11 @@
     "@types/express": "^4.17.21"
   }
 }
+{
+  ...
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev"
+  }
+  ...
+}
