@@ -1,0 +1,426 @@
+import React, { useState } from 'react';
+import { COMPANY_INFO } from '../data/companyData';
+import { 
+  Phone, 
+  Mail, 
+  Menu, 
+  X, 
+  MapPin, 
+  ShieldCheck,
+  Truck,
+  ArrowRight,
+  FileText,
+  Shield
+} from 'lucide-react';
+
+interface HeaderProps {
+  onNavigateToSection: (sectionId: string) => void;
+  onOpenRateModal: (equipmentType?: string) => void;
+  onNavigateToPage: (pagePath: string) => void;
+  currentPage: string;
+}
+
+export const Header: React.FC<HeaderProps> = ({ 
+  onNavigateToSection, 
+  onOpenRateModal,
+  onNavigateToPage,
+  currentPage 
+}) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const handleNavClick = (sectionId: string) => {
+    setMobileMenuOpen(false);
+    if (currentPage !== 'home') {
+      onNavigateToPage('/');
+      setTimeout(() => {
+        onNavigateToSection(sectionId);
+      }, 50);
+    } else {
+      onNavigateToSection(sectionId);
+    }
+  };
+
+  const handlePageClick = (pagePath: string) => {
+    setMobileMenuOpen(false);
+    onNavigateToPage(pagePath);
+  };
+
+  return (
+    <header className="w-full relative z-40 bg-white">
+      {/* 1. TOP YELLOW BRAND BAR - CLEAN TEXT-BASED COMPANY NAME */}
+      <div className="w-full bg-[#FFD13B] py-2 sm:py-2.5 px-4 border-b border-[#e5ba2b]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-1 text-center md:text-left">
+          <a 
+            href="/" 
+            onClick={(e) => { e.preventDefault(); handlePageClick('/'); }}
+            className="font-logo text-sm sm:text-base md:text-lg lg:text-xl font-black tracking-wide text-[#0D4F5C] uppercase select-none hover:opacity-95 transition-opacity"
+          >
+            {COMPANY_INFO.legalName}
+          </a>
+          <span className="text-[11px] sm:text-xs font-bold text-[#0D4F5C] uppercase tracking-wider">
+            {COMPANY_INFO.tagline}
+          </span>
+        </div>
+      </div>
+
+      {/* 2. DARK TEAL CREDENTIALS & CONTACT BAR */}
+      <div className="w-full bg-[#0D4F5C] text-white py-2 px-3 sm:px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-2 text-center md:text-left text-xs">
+          
+          {/* Verified Carrier Credentials */}
+          <div className="flex flex-wrap items-center justify-center md:justify-start gap-2">
+            <span className="inline-flex items-center gap-1 bg-[#155D69] text-white text-[11px] font-bold px-2 py-0.5 rounded-xs border border-white/10">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#FFD13B]" />
+              <span>{COMPANY_INFO.mcNumber}</span>
+            </span>
+            <span className="inline-flex items-center gap-1 bg-[#155D69] text-white text-[11px] font-bold px-2 py-0.5 rounded-xs border border-white/10">
+              <span>USDOT: {COMPANY_INFO.dotNumber}</span>
+            </span>
+            <span className="inline-flex items-center gap-1 bg-emerald-600/90 text-white text-[10px] font-black px-1.5 py-0.5 rounded-xs uppercase tracking-wider">
+              Authority: {COMPANY_INFO.operatingAuthority}
+            </span>
+          </div>
+
+          {/* Direct Phone & Email Contact */}
+          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 text-[11px] sm:text-xs">
+            <div className="flex items-center gap-1.5 font-bold text-white">
+              <Phone className="w-3.5 h-3.5 text-[#FFD13B] fill-[#FFD13B] shrink-0" />
+              <a 
+                href={`tel:${COMPANY_INFO.rawPhone}`} 
+                className="hover:text-[#FFD13B] transition-colors tracking-wide"
+              >
+                {COMPANY_INFO.phone}
+              </a>
+            </div>
+            <span className="text-white/30 hidden sm:inline">|</span>
+            <div className="flex flex-wrap items-center justify-center gap-1.5 text-slate-200">
+              <Mail className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
+              <a 
+                href={`mailto:${COMPANY_INFO.email}`} 
+                className="hover:text-[#FFD13B] font-bold text-white transition-colors"
+              >
+                {COMPANY_INFO.email}
+              </a>
+              <span className="text-white/40">/</span>
+              <a 
+                href={`mailto:${COMPANY_INFO.secondaryEmail}`} 
+                className="hover:text-[#FFD13B] text-slate-300 transition-colors"
+              >
+                {COMPANY_INFO.secondaryEmail}
+              </a>
+              <span className="text-white/40">/</span>
+              <a 
+                href={`mailto:${COMPANY_INFO.tertiaryEmail}`} 
+                className="hover:text-[#FFD13B] text-slate-300 transition-colors"
+              >
+                {COMPANY_INFO.tertiaryEmail}
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      {/* 3. NAVIGATION BAR - STICKY FOR SMOOTH BROWSING */}
+      <div className="w-full bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs sticky top-0 z-40 transition-all duration-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
+          
+          {/* Mobile Menu Button / Simple Carrier Identifier */}
+          <div className="flex items-center gap-3">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open Navigation Menu"
+              className="lg:hidden w-10 h-10 bg-[#FFD13B] hover:bg-[#ebbe29] active:scale-95 text-[#0D4F5C] flex items-center justify-center shadow-xs transition-colors cursor-pointer"
+            >
+              <Menu className="w-5 h-5 stroke-[2.5]" />
+            </button>
+
+            <a
+              href="/"
+              onClick={(e) => { e.preventDefault(); handlePageClick('/'); }}
+              className="hidden lg:flex items-center gap-2 cursor-pointer hover:opacity-90"
+            >
+              <div className="w-8 h-8 rounded-sm bg-[#0D4F5C] text-[#FFD13B] flex items-center justify-center font-black text-sm">
+                <Truck className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col">
+                <span className="text-xs font-black uppercase tracking-wider text-[#0D4F5C] leading-none">
+                  U.S. FREIGHT CARRIER
+                </span>
+                <span className="text-[10px] text-slate-500 font-semibold leading-tight mt-0.5">
+                  Cleveland, OH · Active Authority
+                </span>
+              </div>
+            </a>
+          </div>
+
+          {/* Desktop Navigation Links */}
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-5 text-xs font-bold text-slate-700 uppercase tracking-wide">
+            <button
+              onClick={() => handlePageClick('/')}
+              className={`hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer ${
+                currentPage === 'home' ? 'text-[#0D4F5C] border-b-2 border-[#FFD13B]' : ''
+              }`}
+            >
+              Home
+            </button>
+            <button
+              onClick={() => handleNavClick('credentials')}
+              className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
+            >
+              Credentials
+            </button>
+            <button
+              onClick={() => handleNavClick('equipment')}
+              className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
+            >
+              Our Equipment
+            </button>
+            <button
+              onClick={() => handleNavClick('services')}
+              className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
+            >
+              Services
+            </button>
+            <button
+              onClick={() => handleNavClick('why-us')}
+              className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
+            >
+              Why Choose Us
+            </button>
+            <button
+              onClick={() => handleNavClick('brokers')}
+              className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
+            >
+              Brokers & Shippers
+            </button>
+            <button
+              onClick={() => handleNavClick('about')}
+              className="hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer"
+            >
+              About Us
+            </button>
+
+            {/* Separator */}
+            <span className="text-slate-300">|</span>
+
+            {/* SEPARATED PAGES IN MENU BAR */}
+            <button
+              onClick={() => handlePageClick('/contact')}
+              className={`hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer font-bold ${
+                currentPage === 'contact' ? 'text-[#0D4F5C] border-b-2 border-[#FFD13B] font-black' : 'text-slate-800'
+              }`}
+            >
+              Contact Us
+            </button>
+            <button
+              onClick={() => handlePageClick('/privacy-policy')}
+              className={`hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer ${
+                currentPage === 'privacy-policy' ? 'text-[#0D4F5C] border-b-2 border-[#FFD13B] font-black' : 'text-slate-600'
+              }`}
+            >
+              Privacy Policy
+            </button>
+            <button
+              onClick={() => handlePageClick('/sms-terms')}
+              className={`hover:text-[#0D4F5C] hover:border-b-2 hover:border-[#FFD13B] py-1 transition-all cursor-pointer ${
+                currentPage === 'sms-terms' ? 'text-[#0D4F5C] border-b-2 border-[#FFD13B] font-black' : 'text-slate-600'
+              }`}
+            >
+              SMS Terms
+            </button>
+          </nav>
+
+          {/* Action Buttons: Request a Rate + Contact Us */}
+          <div className="flex items-center gap-2 sm:gap-2.5">
+            <button
+              onClick={() => onOpenRateModal()}
+              className="bg-[#FFD13B] hover:bg-[#ebbe29] text-[#0D4F5C] font-black text-xs px-3 sm:px-4 py-2 uppercase tracking-wider transition-colors cursor-pointer active:scale-95 shadow-xs"
+            >
+              Request a Rate
+            </button>
+            <button
+              onClick={() => handlePageClick('/contact')}
+              className="bg-black hover:bg-slate-800 text-white font-bold text-xs px-3 sm:px-4 py-2 uppercase tracking-wider transition-colors cursor-pointer active:scale-95 shadow-xs"
+            >
+              Contact Us
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* MOBILE DRAWER MENU */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 flex lg:hidden">
+          <div 
+            className="fixed inset-0 bg-black/60 backdrop-blur-xs transition-opacity"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          <div className="relative w-full max-w-xs bg-[#0D4F5C] text-white h-full overflow-y-auto shadow-2xl flex flex-col p-5 z-10 drawer-smooth-in">
+            {/* Drawer Header */}
+            <div className="flex items-start justify-between pb-3 border-b border-white/15">
+              <div>
+                <div className="bg-[#FFD13B] text-[#0D4F5C] px-2.5 py-1 text-xs font-black uppercase tracking-wider inline-block">
+                  VETERANS COMMUNITY HEALTH
+                </div>
+                <div className="text-[10px] text-slate-200 font-bold mt-1.5 space-y-0.5">
+                  <div>{COMPANY_INFO.mcNumber} · USDOT {COMPANY_INFO.dotNumber}</div>
+                  <div className="text-emerald-300">Authority: {COMPANY_INFO.operatingAuthority}</div>
+                </div>
+              </div>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="p-1.5 text-white/80 hover:text-white rounded-full bg-white/10"
+                aria-label="Close Navigation"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            {/* Nav Links */}
+            <div className="py-3 flex flex-col gap-1 text-sm font-semibold">
+              <button
+                onClick={() => handlePageClick('/')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>Home</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+              <button
+                onClick={() => handleNavClick('credentials')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>Carrier Credentials</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+              <button
+                onClick={() => handleNavClick('equipment')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>Our Equipment</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+              <button
+                onClick={() => handleNavClick('services')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>Transportation Services</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+              <button
+                onClick={() => handleNavClick('why-us')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>Why Choose Us</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+              <button
+                onClick={() => handleNavClick('brokers')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>Brokers & Shippers</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+              <button
+                onClick={() => handleNavClick('about')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>About Us</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+              <button
+                onClick={() => handleNavClick('contact')}
+                className="flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+              >
+                <span>Rate Request Form</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+              </button>
+
+              {/* SEPARATED PAGES IN MOBILE MENU */}
+              <div className="pt-2 mt-2 border-t border-white/15 space-y-1">
+                <div className="text-[10px] uppercase font-bold text-[#FFD13B] px-2 mb-1">
+                  Dedicated Pages &amp; Policies
+                </div>
+                <button
+                  onClick={() => handlePageClick('/contact')}
+                  className="w-full flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white font-bold"
+                >
+                  <span className="flex items-center gap-2">
+                    <Phone className="w-3.5 h-3.5 text-[#FFD13B]" />
+                    <span>Contact Us Page</span>
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+                </button>
+                <button
+                  onClick={() => handlePageClick('/privacy-policy')}
+                  className="w-full flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+                >
+                  <span className="flex items-center gap-2">
+                    <Shield className="w-3.5 h-3.5 text-[#FFD13B]" />
+                    <span>Privacy Policy</span>
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+                </button>
+                <button
+                  onClick={() => handlePageClick('/sms-terms')}
+                  className="w-full flex items-center justify-between text-left py-2 px-2 rounded hover:bg-white/10 text-white"
+                >
+                  <span className="flex items-center gap-2">
+                    <FileText className="w-3.5 h-3.5 text-[#FFD13B]" />
+                    <span>SMS Terms &amp; Conditions</span>
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-[#FFD13B]" />
+                </button>
+              </div>
+            </div>
+
+            {/* Direct Contact Footer */}
+            <div className="mt-auto pt-4 border-t border-white/15 text-xs space-y-2">
+              <div className="flex items-center gap-2 font-bold text-white">
+                <Phone className="w-3.5 h-3.5 text-[#FFD13B]" />
+                <a href={`tel:${COMPANY_INFO.rawPhone}`}>{COMPANY_INFO.phone}</a>
+              </div>
+              <div className="flex flex-col gap-1 text-slate-200">
+                <div className="flex items-center gap-2">
+                  <Mail className="w-3.5 h-3.5 text-[#FFD13B] shrink-0" />
+                  <a href={`mailto:${COMPANY_INFO.email}`} className="truncate font-bold text-white hover:text-[#FFD13B]">{COMPANY_INFO.email}</a>
+                </div>
+                <div className="flex items-center gap-2 pl-5.5">
+                  <a href={`mailto:${COMPANY_INFO.secondaryEmail}`} className="truncate text-slate-300 hover:text-[#FFD13B]">{COMPANY_INFO.secondaryEmail}</a>
+                </div>
+                <div className="flex items-center gap-2 pl-5.5">
+                  <a href={`mailto:${COMPANY_INFO.tertiaryEmail}`} className="truncate text-slate-300 hover:text-[#FFD13B]">{COMPANY_INFO.tertiaryEmail}</a>
+                </div>
+              </div>
+              <div className="flex items-start gap-2 text-[11px] text-slate-300">
+                <MapPin className="w-3.5 h-3.5 text-[#FFD13B] shrink-0 mt-0.5" />
+                <span>{COMPANY_INFO.physicalAddress.full}</span>
+              </div>
+
+              <div className="pt-2 flex flex-col gap-2">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenRateModal();
+                  }}
+                  className="w-full bg-[#FFD13B] hover:bg-[#ebbe29] text-[#0D4F5C] font-black py-2.5 text-center uppercase tracking-wider text-xs shadow-xs"
+                >
+                  Request a Rate
+                </button>
+                <button
+                  onClick={() => handleNavClick('contact')}
+                  className="w-full bg-black hover:bg-slate-900 text-white font-bold py-2 text-center uppercase tracking-wider text-xs"
+                >
+                  Contact Us
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      )}
+    </header>
+  );
+};

@@ -1,0 +1,7 @@
+{
+  "name": "APEX CARRIER - Transportation & Logistics",
+  "description": "Modern, professional transportation, freight, and carrier solutions. Reliable freight forwarding, long-haul trucking, warehousing, and commercial delivery.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+
