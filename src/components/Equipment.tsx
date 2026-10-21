@@ -8,7 +8,7 @@ interface EquipmentProps {
 
 export const Equipment: React.FC<EquipmentProps> = ({ onOpenRateModalWithEquipment }) => {
   return (
-    <section id="equipment" className="w-full py-8 sm:py-12 bg-white border-b border-slate-200">
+    <section id="equipment" className="w-full py-8 sm:py-12 bg-white border-b border-slate-200 scroll-mt-14 sm:scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}

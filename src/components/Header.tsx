@@ -121,8 +121,8 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </div>
 
-      {/* 3. NAVIGATION BAR */}
-      <div className="w-full bg-white border-b border-slate-200 shadow-xs">
+      {/* 3. NAVIGATION BAR - STICKY FOR SMOOTH BROWSING */}
+      <div className="w-full bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-xs sticky top-0 z-40 transition-all duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex items-center justify-between">
           
           {/* Mobile Menu Button / Simple Carrier Identifier */}
@@ -258,7 +258,7 @@ export const Header: React.FC<HeaderProps> = ({
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          <div className="relative w-full max-w-xs bg-[#0D4F5C] text-white h-full overflow-y-auto shadow-2xl flex flex-col p-5 z-10 animate-in slide-in-from-left duration-200">
+          <div className="relative w-full max-w-xs bg-[#0D4F5C] text-white h-full overflow-y-auto shadow-2xl flex flex-col p-5 z-10 drawer-smooth-in">
             {/* Drawer Header */}
             <div className="flex items-start justify-between pb-3 border-b border-white/15">
               <div>

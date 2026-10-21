@@ -8,7 +8,7 @@ interface CarrierCredentialsProps {
 
 export const CarrierCredentials: React.FC<CarrierCredentialsProps> = ({ onOpenRateModal }) => {
   return (
-    <section id="credentials" className="w-full py-8 sm:py-12 bg-slate-100 border-b border-slate-200">
+    <section id="credentials" className="w-full py-8 sm:py-12 bg-slate-100 border-b border-slate-200 scroll-mt-14 sm:scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}

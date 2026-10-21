@@ -64,7 +64,7 @@ export const Contact: React.FC<ContactProps> = ({
   };
 
   return (
-    <section id="contact" className="w-full py-8 sm:py-12 bg-white">
+    <section id="contact" className="w-full py-8 sm:py-12 bg-white scroll-mt-14 sm:scroll-mt-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Section Header */}

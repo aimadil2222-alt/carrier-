@@ -3,7 +3,37 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Smooth, elegant modern scrollbar */
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  /* Smooth focus transitions */
+  :focus-visible {
+    outline: 2px solid #0D4F5C;
+    outline-offset: 2px;
   }
 }
 
@@ -12,10 +42,53 @@
   letter-spacing: 0.04em;
 }
 
-/* Custom color tokens matching reference */
+/* Custom color tokens matching brand reference */
 :root {
   --color-primary-teal: #0D4F5C;
   --color-secondary-teal: #155D69;
   --color-primary-yellow: #FFD13B;
 }
 
+/* Silky smooth motion keyframes */
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes drawerSlide {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInPage {
+  from {
+    opacity: 0.35;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-smooth-in {
+  animation: modalPopIn 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.drawer-smooth-in {
+  animation: drawerSlide 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.page-smooth-fade {
+  animation: fadeInPage 0.24s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
