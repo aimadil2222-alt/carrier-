@@ -48,7 +48,7 @@ export const Contact: React.FC<ContactProps> = ({
       company: formData.company,
       timestamp: nowIso,
       consentGranted: formData.smsConsent,
-      consentText: "By checking this box, I consent to receive text messages related to delivery notifications and customer care from Veterans Community Health Support LLC . You can reply “STOP” at any time to opt-out. Message and data rates may apply. Message frequency may vary; text HELP to (951) 413-4908 for assistance. For more information, please refer to our privacy policy (https://vchsllc.com/privacy-policy), and SMS Terms and Conditions (https://vchsllc.com/sms-terms) on our website.",
+      consentText: "By checking this box, I consent to receive text messages related to delivery notifications and customer care from Veterans Community Health Support LLC . You can reply “STOP” at any time to opt-out. Message and data rates may apply. Message frequency may vary; text HELP to (234) 900-8907 for assistance. For more information, please refer to our privacy policy (https://vchsllc.com/privacy-policy), and SMS Terms and Conditions (https://vchsllc.com/sms-terms) on our website.",
       consentVersion: "v1.4-A2P-2026",
       source: "Website Contact & Rate Request Form"
     };
@@ -441,7 +441,7 @@ export const Contact: React.FC<ContactProps> = ({
                       <span className="font-bold text-slate-900 block mb-1">
                         (Optional) SMS Delivery Notifications &amp; Customer Care Consent:
                       </span>
-                      By checking this box, I consent to receive text messages related to delivery notifications and customer care from <strong>Veterans Community Health Support LLC</strong> . You can reply &ldquo;<strong>STOP</strong>&rdquo; at any time to opt-out. Message and data rates may apply. Message frequency may vary; text <strong>HELP</strong> to (951) 413-4908 for assistance. For more information, please refer to our{' '}
+                      By checking this box, I consent to receive text messages related to delivery notifications and customer care from <strong>Veterans Community Health Support LLC</strong> . You can reply &ldquo;<strong>STOP</strong>&rdquo; at any time to opt-out. Message and data rates may apply. Message frequency may vary; text <strong>HELP</strong> to (234) 900-8907 for assistance. For more information, please refer to our{' '}
                       <a
                         href="/privacy-policy"
                         onClick={(e) => {
